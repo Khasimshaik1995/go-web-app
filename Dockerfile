@@ -13,7 +13,7 @@ WORKDIR /app
 FROM base AS dev
 
 # for live reload
-RUN go install github.com/cosmtrek/air@v1.40.4
+RUN go install -mod=mod github.com/githubnemo/CompileDaemon
 
 # copy source code
 COPY . .
@@ -22,8 +22,7 @@ COPY . .
 EXPOSE 8080
 
 # run the app
-ENTRYPOINT [ "air" ]
-
+ENTRYPOINT CompileDaemon --build="go build -o main ." --command=./main
 
 # build stage
 FROM base AS builder
@@ -43,6 +42,8 @@ WORKDIR /app
 
 # copy binary
 COPY --from=builder /app/main .
+
+# copy static
 COPY --from=builder /app/static ./static
 
 # expose the port
