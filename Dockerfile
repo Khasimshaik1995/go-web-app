@@ -22,7 +22,7 @@ COPY . .
 EXPOSE 8080
 
 # run the app
-ENTRYPOINT CompileDaemon --build="go build -o main ." --command=./main
+ENTRYPOINT [ "CompileDaemon", "--build=go build -o main .", "--command=./main", "-polling=true" ]
 
 # build stage
 FROM base AS builder
