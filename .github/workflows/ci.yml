@@ -68,4 +68,18 @@ jobs:
         target: prod
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}}
-    
+  
+  sync-image-tag-in-helm-chart:
+    runs-on: ubuntu-latest
+    needs: push-image
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Update tag in Helm chart and push
+      uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'helm/go-web-app-chart/values.yml'
+          propertyPath: 'image.tag'
+          value: ${{ github.run_id }}
+          commitChange: true
