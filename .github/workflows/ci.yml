@@ -68,3 +68,4 @@ jobs:
         target: prod
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}}
+    
