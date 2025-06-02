@@ -79,7 +79,7 @@ jobs:
       - name: Update tag in Helm chart and push
         uses: fjogeleit/yaml-update-action@main
         with:
-          valueFile: 'helm/go-web-app-chart/values.yml'
+          valueFile: 'helm/go-web-app-chart/values.yaml'
           propertyPath: 'image.tag'
           value: ${{ github.run_id }}
           commitChange: true
