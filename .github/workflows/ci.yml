@@ -68,7 +68,7 @@ jobs:
         target: prod
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}}
-  
+
   sync-image-tag-in-helm-chart:
     runs-on: ubuntu-latest
     needs: push-image
