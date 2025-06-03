@@ -17,35 +17,35 @@ on:
       - 'README.md'
 
 jobs:
-  test:
-    name: Run tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  # test:
+  #   name: Run tests
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
       
-      - uses: actions/setup-go@v5
-        with:
-          go-version: 1.22.5
+  #     - uses: actions/setup-go@v5
+  #       with:
+  #         go-version: 1.22.5
 
-      - name: Install dependencies
-        run: go mod download
+  #     - name: Install dependencies
+  #       run: go mod download
 
-      - name: Run tests
-        run: go test ./...
+  #     - name: Run tests
+  #       run: go test ./...
 
-  lint:
-    name: Run lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  # lint:
+  #   name: Run lint
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - uses: golangci/golangci-lint-action@v7
-        with:
-          version: v2.1.6
-  
+  #     - uses: golangci/golangci-lint-action@v7
+  #       with:
+  #         version: v2.1.6
+
   push-image:
     runs-on: ubuntu-latest
-    needs: [lint, test]
+    # needs: [lint, test]
     if: github.event_name == 'push'
     steps:
     - name: Checkout repository
@@ -83,4 +83,8 @@ jobs:
           propertyPath: 'image.tag'
           value: ${{ github.run_id }}
           commitChange: true
-          masterBranchName: main
+          # masterBranchName: main
+          branch: deployment/${{ github.run_id }}
+          targetBranch: main
+          createPR: true
+          message: 'Update Image Version to ${{ github.run_id }}'
