@@ -76,10 +76,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
   
-      - name: Update tag in Helm chart and push
+      - name: Update tag in Helm chart
         uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: 'helm/go-web-app-chart/values.yaml'
           propertyPath: 'image.tag'
           value: ${{ github.run_id }}
           commitChange: true
+          masterBranchName: main
