@@ -62,6 +62,17 @@ This project is equipped with a robust CI/CD pipeline:
 
 ---
 
-## 📬 Feedback / Contributions
+## 📈 Future Improvements
 
-Feel free to fork and raise a PR. For suggestions or improvements, open an issue.
+* Add Prometheus/Grafana integration
+* Use GitHub Container Registry (GHCR)
+* Add integration tests to CI
+* Implement healthcheck endpoints and readiness probes
+
+---
+
+## 🙋‍♂️ About Me
+**Hasan Ashab** – DevOps Engineer  
+LinkedIn: [@hasan-ashab](https://www.linkedin.com/in/hasan-ashab-b9b20a290)
+Portfolio: Under development
+---

@@ -88,4 +88,4 @@ jobs:
           branch: deployment/${{ github.run_id }}
           targetBranch: main
           createPR: true
-          message: 'Update Image Version to ${{ github.run_id }}'
+          message: 'ci: update Helm chart image tag to ${{ github.run_id }}'
