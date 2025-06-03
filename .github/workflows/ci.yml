@@ -82,7 +82,6 @@ jobs:
           valueFile: 'helm/go-web-app-chart/values.yaml'
           propertyPath: 'image.tag'
           value: ${{ github.run_id }}
-          commitChange: true
           # masterBranchName: main
           branch: deployment/${{ github.run_id }}
           targetBranch: main
