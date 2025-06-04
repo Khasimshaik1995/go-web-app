@@ -1,3 +1,42 @@
-Dockerfile
-.gitignore
+# Go build artifacts
+*.exe
+*.test
+*.out
+
+# Binaries
+main
+
+# Version control
 .git
+.gitignore
+
+# Logs and temp files
+*.log
+*.swp
+*.tmp
+
+# Docker-related files that shouldn’t go into the image
+.dockerignore
+docker-compose.yaml
+
+# IDE/editor files
+.vscode/
+.idea/
+*.iml
+
+# Helm charts (used for deployment, not needed in image)
+helm/
+
+# Docs
+README.md
+LICENSE
+
+# Tests
+main_test.go
+
+# Optionally ignore static HTML if not served via Go embed
+# static/
+
+# Node/npm junk (if any frontend stuff gets added)
+node_modules/
+*.tsbuildinfo
