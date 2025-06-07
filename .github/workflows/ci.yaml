@@ -71,11 +71,13 @@ jobs:
   #  if: github.event_name == 'push'
     env:
       REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
     outputs:
       image_tag: ${{ steps.set_output.outputs.image_tag }}
       image_tag_short: ${{ steps.set_output.outputs.image_tag_short }}
     steps:
+    - name: Set IMAGE_NAME env
+      run: echo "IMAGE_NAME=${{ github.repository }}" | tr '[:upper:]' '[:lower:]' >> $GITHUB_ENV
+
     - name: Checkout repository
       uses: actions/checkout@v4
 
