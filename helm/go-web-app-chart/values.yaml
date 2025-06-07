@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: nginx
+  repository: ghcr.io/hasanashab
   pullPolicy: IfNotPresent
   tag: sha-f09b8bd4545649ee00d4207eb56d4de368b3b30a
 imagePullSecrets: []
