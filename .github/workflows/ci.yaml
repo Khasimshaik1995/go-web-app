@@ -101,6 +101,14 @@ jobs:
           type=ref,event=branch
           latest
 
+    - name: Set image tag outputs
+      id: set_output
+      run: |
+        full_tag=$(echo "${{ steps.meta.outputs.tags }}" | tr ',' '\n' | grep '^sha-')
+        short_tag=$(echo "$full_tag" | cut -c5-11)
+        echo "image_tag=$full_tag" >> $GITHUB_OUTPUT
+        echo "image_tag_short=$short_tag" >> $GITHUB_OUTPUT
+
     - name: Build docker image
       uses: docker/build-push-action@v6
       with:
@@ -115,7 +123,7 @@ jobs:
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.set_output.outputs.image_tag }}
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
@@ -131,15 +139,7 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
-    
-    - name: Set image tag outputs
-      id: set_output
-      run: |
-        full_tag=$(echo "${{ steps.meta.outputs.tags }}" | tr ',' '\n' | grep '^sha-')
-        short_tag=$(echo "$full_tag" | cut -c5-11)
-        echo "image_tag=$full_tag" >> $GITHUB_OUTPUT
-        echo "image_tag_short=$short_tag" >> $GITHUB_OUTPUT
-     
+
   update-helm:
     name: Sync helm chart image tag
     runs-on: ubuntu-latest
