@@ -114,7 +114,7 @@ jobs:
       id: set_output
       run: |
         # get the image tag that contains 'sha-'
-        full_tag=$(echo "${{ steps.docker_meta.outputs.json}}" | jq -r '.tags[] | select(. | test("sha-"))')
+        full_tag=$(echo "${{ steps.meta.outputs.json}}" | jq -r '.tags[] | select(. | test("sha-"))')
         echo $full_tag
         short_tag=$(echo "$full_tag" | cut -c5-11)
         echo "image_tag=$full_tag" >> $GITHUB_OUTPUT
