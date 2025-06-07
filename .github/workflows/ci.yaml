@@ -148,7 +148,7 @@ jobs:
         vuln-type: 'os,library'
         severity: 'CRITICAL,HIGH'
     
-      - name: Push docker image
+    - name: Push docker image
       uses: docker/build-push-action@v6
       with:
         context: .
