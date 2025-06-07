@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: nginx
   pullPolicy: IfNotPresent
-  tag: sha-f09b8bd4545649ee00d4207eb56d4de368b3b30a
+  tag: sha-c10b1fa4fe2c819b9c7873ea4041b1534a1ce4da
 imagePullSecrets: []
 nameOverride: ''
 fullnameOverride: ''
