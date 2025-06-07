@@ -67,8 +67,8 @@ jobs:
   docker:
     name: Build and push docker image
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: build
-  #  if: github.event_name == 'push'
     env:
       REGISTRY: ghcr.io
     outputs:
