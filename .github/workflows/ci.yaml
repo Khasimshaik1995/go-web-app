@@ -168,5 +168,5 @@ jobs:
           value: ${{ needs.docker.outputs.image_tag }}
           masterBranchName: main
           targetBranch: main
-          commit: true
+          commitChanges: true
           message: 'ci: update Helm chart image tag to ${{ needs.docker.outputs.image_tag_short }}...'
