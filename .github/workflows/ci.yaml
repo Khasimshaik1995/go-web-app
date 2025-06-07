@@ -75,8 +75,10 @@ jobs:
       image_tag: ${{ steps.set_output.outputs.image_tag }}
       image_tag_short: ${{ steps.set_output.outputs.image_tag_short }}
     steps:
-    - name: Set IMAGE_NAME env
-      run: echo "IMAGE_NAME=${{ github.repository }}" | tr '[:upper:]' '[:lower:]' >> $GITHUB_ENV
+    - name: Set variables
+      id: vars
+      run: |
+        echo "image_name=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
 
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -95,7 +97,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        images: ${{ env.REGISTRY }}/${{ steps.vars.outputs.image_name }}
         tags: |
           type=sha,format=long
           type=ref,event=branch
@@ -139,14 +141,14 @@ jobs:
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.set_output.outputs.image_tag }}
+        image-ref: ${{ env.REGISTRY }}/${{ steps.vars.outputs.image_name }}:${{ steps.set_output.outputs.image_tag }}
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
         vuln-type: 'os,library'
         severity: 'CRITICAL,HIGH'
     
-    - name: Push docker image
+      - name: Push docker image
       uses: docker/build-push-action@v6
       with:
         context: .
