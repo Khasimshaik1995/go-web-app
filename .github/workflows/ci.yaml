@@ -115,15 +115,21 @@ jobs:
       env:
         DOCKER_METADATA: ${{ steps.meta.outputs.json }}
       run: |
-        # Pretty print the metadata
+        # Pretty print for debugging
         echo "$DOCKER_METADATA" | jq '.'
     
-        # Get the image tag that starts with 'sha-'
-        full_tag=$(echo "$DOCKER_METADATA" | jq -r '.tags[] | select(startswith("sha-"))' | head -n 1)
+        # Extract full image reference with sha- tag
+        full_ref=$(echo "$DOCKER_METADATA" | jq -r '.tags[] | select(test(":sha-"))' | head -n 1)
     
-        echo "Full tag: $full_tag"
+        echo "Full image reference: $full_ref"
     
+        # Extract just the tag (after the last colon)
+        full_tag="${full_ref##*:}"
+        echo "Image tag: $full_tag"
+    
+        # Short tag = first 7 chars of the sha
         short_tag=$(echo "$full_tag" | cut -c5-11)
+        echo "Short tag: $short_tag"
     
         echo "image_tag=$full_tag" >> "$GITHUB_OUTPUT"
         echo "image_tag_short=$short_tag" >> "$GITHUB_OUTPUT"
