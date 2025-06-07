@@ -156,17 +156,17 @@ jobs:
   update-helm:
     name: Sync helm chart image tag
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: docker
     steps:
       - uses: actions/checkout@v4
 
       - name: Update tag in Helm chart
-        uses: fjogeleit/yaml-update-action@main
+        uses: fjogeleit/yaml-update-action@v0.16.1
         with:
           valueFile: 'helm/go-web-app-chart/values.yaml'
           propertyPath: 'image.tag'
           value: ${{ needs.docker.outputs.image_tag }}
           masterBranchName: main
           targetBranch: main
-          commitChanges: true
           message: 'ci: update Helm chart image tag to ${{ needs.docker.outputs.image_tag_short }}...'
