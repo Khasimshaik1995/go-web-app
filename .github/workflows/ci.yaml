@@ -40,10 +40,11 @@ jobs:
       - uses: golangci/golangci-lint-action@v7
         with:
           version: v2.1.6
-          
+
   build:
     name: Build
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: [test, lint]
     steps:
       - uses: actions/checkout@v4
@@ -67,8 +68,7 @@ jobs:
   docker:
     name: Build and push docker image
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    needs: build
+    needs: [test, lint]
     env:
       REGISTRY: ghcr.io
     outputs:
