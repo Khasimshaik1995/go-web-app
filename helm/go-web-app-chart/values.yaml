@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/hasanashab
   pullPolicy: IfNotPresent
-  tag: sha-d55202abd7520799f9e1ba8143b01935521eeedc
+  tag: sha-200834731400636677aeef960c0dd73ef8a79e2c
 imagePullSecrets: []
 nameOverride: ''
 fullnameOverride: ''
