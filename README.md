@@ -1,6 +1,10 @@
 
 # Go Web Application – DevOps Edition
 
+[![Docker Image Size](https://badgen.io/github/keeweb/keeweb-badges-ghcr/size?image=hasanashab/go-web-app-devops)](https://ghcr.io/hasanashab/go-web-app-devops)
+
+![CI](https://github.com/hasanashab/go-web-app-devops/actions/workflows/ci.yml/badge.svg)
+
 This is a DevOps-enhanced deployment of a [basic Golang web application](https://github.com/iam-veeramalla/go-web-app), restructured and productionized with best practices for containerization, CI/CD, and Kubernetes.
 
 ---
@@ -10,10 +14,10 @@ This is a DevOps-enhanced deployment of a [basic Golang web application](https:/
 * **Dockerized Build**: Multi-stage Dockerfile for efficient image creation.
 * **Local Development**: `docker-compose` support with live reload for rapid iteration.
 * **Kubernetes Deployment**: Complete manifest files for deployment on **_AWS EKS_**.
-* **Helm Charts**: Configurable for different environments (dev/stage/prod).
+* **Helm Charts**: Configurable Kubernetes manifests.
 * **Ingress Management**: Ingress Controller (**_NGINX_**) for routing and external access.
-* **CI with GitHub Actions**: Runs tests, lints code, builds Docker image, and updates Helm chart automatically on each push.
-* **CD via Argo CD**: GitOps-based continuous delivery—syncs Helm chart changes directly into the EKS cluster.
+* **CI with GitHub Actions**: [See more](#️cicd-pipeline).
+* **CD via Argo CD**: [See more](#️cicd-pipeline).
 
 ---
 
