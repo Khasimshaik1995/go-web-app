@@ -2,7 +2,9 @@
 # Go Web Application – DevOps Edition
 
 [![CI pipeline](https://github.com/HasanAshab/go-web-app-devops/actions/workflows/ci.yaml/badge.svg?event=push)](https://github.com/HasanAshab/go-web-app-devops/actions/workflows/ci.yaml)
-![GHCR Docker Image Size](https://img.shields.io/docker/image-size/ghcr.io/hasanashab/go-web-app-devops/latest)
+
+![GHCR Docker Image Size](https://img.shields.io/docker/image-size/ghcr.io/hasanashab/go-web-app-devops/?tag=latest)
+
 
 This is a DevOps-enhanced deployment of a [basic Golang web application](https://github.com/iam-veeramalla/go-web-app), restructured and productionized with best practices for containerization, CI/CD, and Kubernetes.
 
@@ -78,4 +80,3 @@ This project is equipped with a robust CI/CD pipeline:
 LinkedIn: [@hasan-ashab](https://www.linkedin.com/in/hasan-ashab-b9b20a290)
 Portfolio: Under development
 ---
-
