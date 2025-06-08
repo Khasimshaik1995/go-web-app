@@ -164,7 +164,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update tag in Helm chart
+      - name: Update tag in Helm chart and create PR
+        id: create-pull-request
         uses: fjogeleit/yaml-update-action@v0.16.1
         with:
           valueFile: 'helm/go-web-app-chart/values.yaml'
@@ -172,4 +173,16 @@ jobs:
           value: ${{ needs.docker.outputs.image_tag }}
           masterBranchName: main
           targetBranch: main
+          branch: ci/helm-update
+          createPR: true
           message: 'ci: update Helm chart image tag to ${{ needs.docker.outputs.image_tag_short }}...'
+      
+      - name: Get pull request number
+        run: echo ${{ steps.create-pull-request.outputs.pull_request }}"
+      
+      - name: Enable auto-merge
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          # token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.create-pull-request.outputs.pull_request }}
+          merge-method: squash
