@@ -173,7 +173,7 @@ jobs:
           value: ${{ needs.docker.outputs.image_tag }}
           masterBranchName: main
           targetBranch: main
-          branch: ci/helm-update
+          branch: ci/helm-update-${{ needs.docker.outputs.image_tag_short }}
           createPR: true
           message: 'ci: update Helm chart image tag to ${{ needs.docker.outputs.image_tag_short }}...'
 
