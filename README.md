@@ -64,9 +64,8 @@ This project is equipped with a robust CI/CD pipeline:
 
 ## 📈 Future Improvements
 
-* Add Prometheus/Grafana integration
-* Use GitHub Container Registry (GHCR)
 * Add integration tests to CI
+* Add Prometheus/Grafana integration
 * Implement healthcheck endpoints and readiness probes
 
 ---
