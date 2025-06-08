@@ -180,7 +180,7 @@ jobs:
       - name: Extract PR number
         id: pr
         run: |
-          echo '${{ steps.update-helm.outputs.pull_request.number }}'
+          echo '${{ fromJson(steps.update-helm.outputs.pull_request).number }}'
           echo '${{ steps.update-helm.outputs.pull_request }}' | jq '.number' > pr_number.txt
           echo "number=$(cat pr_number.txt)" >> $GITHUB_OUTPUT
 
