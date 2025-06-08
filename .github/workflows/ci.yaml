@@ -177,9 +177,15 @@ jobs:
           createPR: true
           message: 'ci: update Helm chart image tag to ${{ needs.docker.outputs.image_tag_short }}...'
 
+      - name: Extract PR number
+        id: pr
+        run: |
+          echo '${{ steps.update-helm.outputs.pull_request }}' | jq '.number' > pr_number.txt
+          echo "number=$(cat pr_number.txt)" >> $GITHUB_OUTPUT
+
       - name: Enable auto-merge
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
           # token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.update-helm.outputs.pull_request.number }}
+          pull-request-number: ${{ steps.pr.outputs.number }}
           merge-method: squash
