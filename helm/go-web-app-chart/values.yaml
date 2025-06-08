@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/hasanashab/go-web-app-devops
   pullPolicy: IfNotPresent
-  tag: sha-e4d9bced784298197c4393cab52903a25da72aac
+  tag: sha-835c4d1dff1c7c8828cc37a0c96510ae8562c778
 imagePullSecrets: []
 nameOverride: ''
 fullnameOverride: ''
