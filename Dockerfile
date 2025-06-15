@@ -1,5 +1,5 @@
 # base stage
-FROM golang:1.22.7 AS base
+FROM golang:1.23.10 AS base
 
 # install dependencies
 COPY go.mod ./
