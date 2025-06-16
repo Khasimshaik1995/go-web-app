@@ -1,7 +1,7 @@
 resource "azurerm_resource_group" "main" {
   name     = "${local.project_name}-prod"
   location = var.location
-  tags = local.tags
+  tags     = local.tags
 }
 
 
@@ -10,7 +10,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   dns_prefix          = "mainaks1"
-  tags = local.tags
+  tags                = local.tags
 
   default_node_pool {
     name       = "default"

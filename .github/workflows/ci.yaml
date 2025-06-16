@@ -3,18 +3,24 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - 'helm/**'
-      - 'infrastructure/**'
-      - 'README.md'
+    paths:
+      - '**/*.go'
+      - 'go.mod'
+      - 'go.sum'
+      - 'static/**'
+      - 'Dockerfile'
+      - '.github/workflows/ci.yaml'
   
   pull_request:
     branches:
       - main
-    paths-ignore:
-      - 'helm/**'
-      - 'infrastructure/**'
-      - 'README.md'
+    paths:
+      - '**/*.go'
+      - 'go.mod'
+      - 'go.sum'
+      - 'static/**'
+      - 'Dockerfile'
+      - '.github/workflows/ci.yaml'
 
 jobs:
   test:
