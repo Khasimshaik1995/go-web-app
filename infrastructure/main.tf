@@ -4,13 +4,6 @@ resource "azurerm_resource_group" "main" {
   tags = local.tags
 }
 
-module "vnet" {
-  source = "./vnet"
-  address_space = [ "10.0.0.0/16" ]
-  rg_name = azurerm_resource_group.main.name
-  location = azurerm_resource_group.main.location
-  tags = local.tags
-}
 
 resource "azurerm_kubernetes_cluster" "main" {
   name                = "main-aks-1"
@@ -29,14 +22,4 @@ resource "azurerm_kubernetes_cluster" "main" {
   identity {
     type = "SystemAssigned"
   }
-}
-
-output "client_certificate" {
-  value     = azurerm_kubernetes_cluster.main.kube_config[0].client_certificate
-  sensitive = true
-}
-
-output "kube_config" {
-  value = azurerm_kubernetes_cluster.main.kube_config_raw
-  sensitive = true
 }
