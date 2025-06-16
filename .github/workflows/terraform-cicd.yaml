@@ -15,6 +15,8 @@ on:
 defaults:
   run:
     working-directory: infrastructure
+env:
+  ARM_SUBSCRIPTION_ID: "fc4b0a21-cf38-4354-9ee7-f3532dd03c57"
 
 jobs:
   lint:
