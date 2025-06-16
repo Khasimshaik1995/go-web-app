@@ -95,3 +95,4 @@ jobs:
       
       - name: Terraform Apply
         run: terraform destroy -auto-approve
+
