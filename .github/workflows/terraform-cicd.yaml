@@ -18,10 +18,10 @@ defaults:
   run:
     working-directory: infrastructure
 env:
-  ARM_CLIENT_ID: "8f403563-3b14-427a-b1dc-76236c37e0e9"
-  ARM_CLIENT_SECRET: "UAl8Q~Z54KAZPK0MDaqShsHTD9lp0bZhsUkutb2I"
-  ARM_TENANT_ID: "60207d4f-162a-4db1-a537-aeb2e10f9872"
-  ARM_SUBSCRIPTION_ID: "fc4b0a21-cf38-4354-9ee7-f3532dd03c57"
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
 
 jobs:
   lint:
