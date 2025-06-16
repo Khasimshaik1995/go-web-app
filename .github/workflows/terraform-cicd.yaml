@@ -5,12 +5,14 @@ on:
       - main
     paths:
       - 'infrastructure/**'
+      - '.github/workflows/terraform-cicd.yaml'
 
   pull_request:
     branches:
       - main
     paths:
       - 'infrastructure/**'
+      - '.github/workflows/terraform-cicd.yaml'
 
 defaults:
   run:
