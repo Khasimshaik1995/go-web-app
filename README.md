@@ -49,12 +49,9 @@ Once running, the server will be accessible at:
 This project is equipped with a robust CI/CD pipeline:
 
 - **CI (GitHub Actions)**:
-  - Runs lint checks and unit tests on every PR and push to `main`.
-  - Builds and pushes a Docker image with a unique tag (`github.run_id`) to DockerHub.
-  
+![CI Diagram](static/images/ci.png)
 - **CD (Argo CD)**:
-  - Helm chart's `values.yaml` is auto-updated with the new image tag.
-  - Argo CD detects the change and syncs the deployment to AWS EKS.
+![CD Diagram](static/images/cd.png)
 
 ---
 
