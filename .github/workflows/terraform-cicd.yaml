@@ -18,6 +18,8 @@ defaults:
   run:
     working-directory: infrastructure
 env:
+  ARM_CLIENT_ID: "8f403563-3b14-427a-b1dc-76236c37e0e9"
+  ARM_CLIENT_SECRET: "c8edafc1-41e9-4053-9a68-14545acb088e"
   ARM_TENANT_ID: "60207d4f-162a-4db1-a537-aeb2e10f9872"
   ARM_SUBSCRIPTION_ID: "fc4b0a21-cf38-4354-9ee7-f3532dd03c57"
 
