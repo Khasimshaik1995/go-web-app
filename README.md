@@ -2,6 +2,7 @@
 # Go Web Application – DevOps Edition
 
 [![CI pipeline](https://github.com/HasanAshab/go-web-app-devops/actions/workflows/ci.yaml/badge.svg?event=push)](https://github.com/HasanAshab/go-web-app-devops/actions/workflows/ci.yaml)
+[![Terraform CI-CD pipeline](https://github.com/HasanAshab/go-web-app-devops/actions/workflows/terraform-cicd.yaml/badge.svg)](https://github.com/HasanAshab/go-web-app-devops/actions/workflows/terraform-cicd.yaml)
 [![1]](https://github.com/HasanAshab/go-web-app-devops/pkgs/container/go-web-app-devops)
 
 
