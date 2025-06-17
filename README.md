@@ -76,6 +76,5 @@ This project is equipped with a robust CI/CD pipeline:
 
 ## 🙋‍♂️ About Me
 **Hasan Ashab** – DevOps Engineer  
-LinkedIn: [@hasan-ashab](https://www.linkedin.com/in/hasan-ashab-b9b20a290)
-Portfolio: Under development
+LinkedIn: [@hasan-ashab](https://www.linkedin.com/in/hasan-ashab)
 ---
