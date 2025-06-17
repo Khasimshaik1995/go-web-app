@@ -13,10 +13,6 @@ on:
     paths:
       - 'infrastructure/**'
       - '.github/workflows/terraform-cicd.yaml'
-
-defaults:
-  run:
-    working-directory: infrastructure
 env:
   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
   ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -29,25 +25,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-      
-      - name: Terraform Format
-        run: terraform fmt -check -recursive
-  
+      - name: Terraform fmt
+        uses: dflook/terraform-fmt-check@v2
+        with:
+          path: infrastructure
+
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-
-      - name: Terraform Init
-        run: terraform init
-      
       - name: Terraform Validate
-        run: terraform validate
+        uses: dflook/terraform-validate@v2
+        with:
+          path: infrastructure
 
   plan:
     needs: [lint, validate]
@@ -59,40 +50,28 @@ jobs:
         with:
           path: infrastructure
 
-      - name: Publish Terraform Plan
-        uses: actions/upload-artifact@v4
-        with:
-          name: tfplan
-          path: tfplan
-
   apply:
     needs: plan
-    runs-on: ubuntu-latest
     environment: production
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-      
-      - name: Terraform Init
-        run: terraform init
       
       - name: Terraform Apply
-        run: terraform apply -auto-approve -input=false
+        uses: dflook/terraform-apply@v2
+        with:
+          path: infrastructure
 
   destroy:
     needs: apply
-    runs-on: ubuntu-latest
     environment: production
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-      
-      - name: Terraform Init
-        run: terraform init
-      
       - name: Terraform Apply
-        run: terraform destroy -auto-approve
+        uses: dflook/terraform-destroy@v2
+        with:
+          path: infrastructure
