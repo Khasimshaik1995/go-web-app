@@ -94,4 +94,6 @@ jobs:
         git config --global user.name "Khasimshaik1995"
         git add helm/go-web-app-chart/values.yaml
         git commit -m "Update tag in Helm chart"
+        git pull --rebase  # ✅ This line fixes the error
         git push
+
